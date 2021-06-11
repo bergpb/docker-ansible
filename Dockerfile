@@ -1,6 +1,15 @@
-FROM debian:buster-slim
+FROM python:3.9.5-alpine
 
-RUN apt-get update &&\
-    apt-get install ansible openssh-server -y
+RUN pip3 install --upgrade pip
 
-RUN apt-get clean
+RUN apk add --update-cache \
+    gcc \
+    musl-dev \
+    python3-dev \
+    libffi-dev \
+    openssl-dev \
+    cargo \
+    && rm -rf /var/cache/apk/*
+
+RUN pip3 install ansible
+

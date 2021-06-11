@@ -1,4 +1,6 @@
-FROM python:3.9.5-alpine
+FROM python:3.9.5-alpine as base
+
+FROM base as builder
 
 RUN pip3 install --upgrade pip
 
@@ -11,5 +13,9 @@ RUN apk add --update-cache \
     cargo \
     && rm -rf /var/cache/apk/*
 
-RUN pip3 install ansible
+RUN pip3 install --prefix=/install \
+    ansible --no-warn-script-location
 
+FROM base
+
+COPY --from=builder /install /usr/local

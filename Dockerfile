@@ -11,11 +11,14 @@ RUN apk add --update-cache \
     libffi-dev \
     openssl-dev \
     cargo \
+    openssh \
     && rm -rf /var/cache/apk/*
 
 RUN pip3 install --prefix=/install \
     ansible --no-warn-script-location
 
 FROM base
+
+RUN apk --no-cache add openssh
 
 COPY --from=builder /install /usr/local

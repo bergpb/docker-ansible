@@ -1,7 +1,8 @@
+## Docker Ansible
 
+Docker image to use with CI/CD with Ansible.
 
-docker build . -t bergpb/docker-ansible:VERSION
-docker build . -t bergpb/docker-ansible:latest
+[https://hub.docker.com](https://hub.docker.com/repository/docker/bergpb/docker-ansible)
 
-docker push bergpb/docker-ansible:VERSION
-docker push bergpb/docker-ansible:latest
+Pushing images:
+  - `make TAG=version`
